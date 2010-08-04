@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>Testing Event Delegation</title>
+<link rel="stylesheet" type="text/css" href="test.css"/>
+<script type="text/javascript" src="../reglib.js"></script>
+<script type="text/javascript">
+
+(function($){
+	$.click('div#testclick', function(){
+		this.innerHTML = 'click';
+		this.className = 'test yes';
+	});
+	$.doubleClick('div#testdblclick', function(e){
+		this.innerHTML = 'double click';
+		this.className = 'test yes';
+	});
+	$.mouse('div#testmousedownup', function(e){
+		this.innerHTML = 'mousedown';
+		this.className = 'test partial';
+	}, function(e){
+		this.innerHTML = 'mouseup';
+		this.className = 'test yes';
+	});
+	$.focus('div#testfocus', function(e){
+		this.className = 'test partial';
+	}, function(e){
+		this.className = 'test yes';
+	});
+	$.hover('#hovertest', function(){
+		this.innerHTML = 'mouse enter';
+		this.className = 'test partial';
+	}, function(){
+		this.innerHTML = 'mouse leave';
+		this.className = 'test yes';
+	});
+})(REGLIB);
+
+/*
+
+
+var over = false;
+reg.hover('#baz',function(e){
+	var el = gebcn('test',this)[0];
+	if (over) {
+		rcn(el, 'confirmed');
+		rcn(el, 'unconfirmed');
+		acn(el, 'failed');
+		el.innerHTML = 'failed mouseover';
+	} else {
+		el.innerHTML = 'now mouseout...';
+	}
+	over = true;
+	console.log('over');
+},function(e){
+	var el = gebcn('test',this)[0];
+	if (!over) {
+		rcn(el, 'confirmed');
+		rcn(el, 'unconfirmed');
+		acn(el, 'failed');
+		el.innerHTML = 'failed mouseout';
+	} else {
+		rcn(el, 'failed');
+		rcn(el, 'unconfirmed');
+		acn(el, 'confirmed');
+		el.innerHTML = 'passed mouseover and mouseout';
+	}
+	over = false;
+	console.log('out');
+});
+
+var submit = reg.submit('div#testsubmit',function(e){
+	rcn(this, 'unconfirmed');
+	rcn(this, 'failed');
+	acn(this, 'confirmed');
+	this.innerHTML += ' passed submit';
+	return false;
+},1);
+
+var submit = reg.submit('div#testsubmit',function(e){
+	rcn(this, 'unconfirmed');
+	acn(this, 'failed');
+	rcn(this, 'confirmed');
+	this.innerHTML += 'depth failed';
+	return false;
+},0);
+
+var reset = reg.reset('div#testreset',function(e){
+	rcn(this, 'unconfirmed');
+	rcn(this, 'failed');
+	acn(this, 'confirmed');
+	this.innerHTML += ' passed reset';
+	return false;
+});
+
+reg.change('div#testchange',function(e){
+	if (!reg.matches(reg.getTarget(e),'select,input,textarea') || !reg.matches(this,'div#testchange')) {
+		rcn(this, 'unconfirmed');
+		acn(this, 'failed');
+		rcn(this, 'confirmed');
+		this.innerHTML += 'failed change';
+		return false;
+	} else {
+		rcn(this, 'unconfirmed');
+		rcn(this, 'failed');
+		acn(this, 'confirmed');
+		this.innerHTML += ' passed change';
+		return false;
+	}
+});
+
+reg.select('div#testselect',function(e){
+	rcn(this, 'unconfirmed');
+	rcn(this, 'failed');
+	acn(this, 'confirmed');
+	this.innerHTML += ' passed select';
+	return false;
+});
+
+reg.postSetup(function(){ document.body.innerHTML += ''; });
+*/
+</script>
+</head>
+<body>
+<div id="pagewrap">
+<h1>Testing Event Delegation</h1>
+
+<div id="testclick" class="test unconfirmed">
+click to test
+</div>
+
+<div id="testdblclick" class="test unconfirmed">
+double click to test
+</div>
+
+<div id="testmousedownup" class="test unconfirmed">
+mousedown and mouseup to test
+</div>
+
+<form action="">
+<div id="testfocus" class="test unconfirmed">
+<input type="text" value="" id="foc"/>
+<input type="text" value="focus to test" id="foc"/>
+</div>
+</form>
+
+<div id="hovertest" class="test unconfirmed">
+hover me
+</div>
+
+<div id="testsubmit" class="test unconfirmed">
+<form action="">
+<input type="submit" value="click to test submit"/>
+<input type="text"/>
+<input/>
+</form>
+</div>
+
+<div id="testreset" class="test unconfirmed">
+<form action="">
+<input type="reset" value="click to test reset"/>
+<input type="text" value=""/>
+</form>
+</div>
+
+<div id="testchange" class="test unconfirmed">
+<form action="">
+<select>
+<option>changeme</option>
+<option>bar</option>
+<option>baz</option>
+</select>
+<select>
+<option>changeme2</option>
+<option>bar2</option>
+<option>baz2</option>
+</select>
+<input type="text"/>
+<input type="checkbox"/>
+<input type="radio"/>
+</form>
+</div>
+
+<div id="testselect" class="test unconfirmed">
+<form action="">
+<input type="text" value="selectme"/>
+</form>
+</div>
+
+</div>
+</body>
+</html>
+
+
+

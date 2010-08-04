@@ -1,0 +1,158 @@
+body{
+	font-size:14px;
+	font-family:sans-serif;
+	background:#ccc;
+	margin:0;
+	padding:10px 20px;
+	line-height:140%;
+}
+div#pagewrap{
+	max-width:660px;
+	margin:10px auto;
+	border:1px solid;
+	border-width:1px 1px;
+	border-color:#fff #777 #777 #fff;
+	background:#eee;
+	padding:10px 25px 40px;
+}
+a[href]{
+	color:blue;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+dl,
+ul,
+p,
+pre,
+table.data,
+blockquote{
+	margin-top:15px;
+	margin-bottom:15px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+	color:#060;
+}
+div.hr{
+	margin:30px -25px;
+	border:1px solid;
+	border-color:#aaa #fff #fff #aaa;
+}
+div.hr hr{
+	display:none;
+}
+pre{
+	background:white;
+	padding:15px 18px;
+}
+table.data{
+	border:1px solid;
+	border-color:#999 #fff #fff #999;
+	border-spacing:0px;
+	background:#ddd;
+}
+table.data td,
+table.data th{
+	border:1px solid;
+	border-color:#fff #999 #999 #fff;
+	vertical-align:top;
+	text-align:left;
+	padding:6px 8px;
+}
+table.data tbody td,
+table.data tbody th{
+	white-space:nowrap;
+}
+table.data td[scope=row]{
+	white-space:nowrap;
+}
+em.warning{
+	font-style:normal;
+	font-weight:bold;
+	color:#c00;
+}
+em.bool{
+	color:#aaa;
+	padding:0px 4px;
+	font-style:normal;
+	text-transform:uppercase;
+}
+/* ################################################# */
+.no{
+	color:red!important;
+}
+.yes{
+	color:green!important;
+}
+.zar .no{
+	color:green!important;
+}
+.zar .yes{
+	color:red!important;
+}
+table.changeme{
+	border-collapse:collapse;
+}
+/* ################################################# */
+table.changeme{
+	margin:auto;
+}
+table.changeme td{
+	border:0px solid black;
+	background:white;
+	color:white;
+	width:30px;
+	height:30px;
+	cursor:pointer;
+	text-align:center;
+	font-size:10px;
+}
+table.changeme td.changed{
+	background:green;
+}
+
+
+
+
+
+
+
+body .test{
+border:10px solid;
+padding:20px 25px;
+text-align:center;
+font-size:25px;
+font-weight:bold;
+margin:10px 0px;
+cursor:pointer;
+}
+.unconfirmed{
+background:#ff6;
+color:#990;
+}
+body .confirmed{
+background:#cfc;
+color:#090;
+}
+.failed{
+background:#fcc;
+color:#c00;
+}
+
+.keytest{
+display:inline-block;
+border:5px solid;
+width:70px;
+height:70px;
+padding:10px;
+margin:10px 5px 0px 0px;
+}

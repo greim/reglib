@@ -1,0 +1,30 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Reglib Tests</title>
+</head>
+<script type="text/javascript" src="../jasmine/lib/jasmine-0.10.0.js"></script>
+<script type="text/javascript" src="../jasmine/lib/TrivialReporter.js"></script>
+<script type="text/javascript" src="../jasmine/lib/consolex.js"></script>
+<script type="text/javascript" src="../reglib.js"></script>
+<link rel="stylesheet" type="text/css" href="../jasmine/lib/jasmine.css">
+
+<script type="text/javascript">
+  jasmine.include('spec/reglib_suites.js', true);
+</script>
+
+<body>
+
+<h1>Reglib</h1>
+
+<script type="text/javascript">
+  var jasmineEnv = jasmine.getEnv();
+  jasmineEnv.reporter = new jasmine.TrivialReporter();
+  jasmineEnv.execute();
+</script>
+
+</body>
+</html>
+
+

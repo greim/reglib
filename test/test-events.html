@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>Testing Event Functions</title>
+<link rel="stylesheet" type="text/css" href="test.css"/>
+<style type="text/css">
+</style>
+<script type="text/javascript" src="../reg.js"></script>
+<script type="text/javascript">
+reg.importAll();
+
+reg.postSetup(function(){
+	var test = gebi('testadd');
+	var mem = addEvent(test, 'click', function(e){
+		rcn(this, 'unconfirmed');
+		rcn(this, 'failed');
+		acn(this, 'confirmed');
+		this.innerHTML = 'addEvent() works';
+	});
+});
+
+reg.postSetup(function(){
+	var test = gebi('testcancel');
+	var mem = addEvent(test, 'click', function(e){
+		cancelBubble(e);
+		rcn(this, 'unconfirmed');
+		rcn(this, 'failed');
+		acn(this, 'confirmed');
+		this.innerHTML = 'cancelBubble() works';
+	});
+});
+
+reg.click('#testcancel',function(e){
+	rcn(this, 'confirmed');
+	rcn(this, 'unconfirmed');
+	acn(this, 'failed');
+	this.innerHTML = 'cancelBubble() failed';
+});
+
+reg.click('#testtarget',function(e){
+	var t = getTarget(e);
+	if (matches(t, 'div#testtarget.test')) {
+		rcn(this, 'failed');
+		rcn(this, 'unconfirmed');
+		acn(this, 'confirmed');
+		this.innerHTML = 'getTarget() works';
+	} else {
+		rcn(this, 'unconfirmed');
+		rcn(this, 'confirmed');
+		acn(this, 'failed');
+		this.innerHTML = 'getTarget() failed';
+	}
+});
+
+reg.postSetup(function(){
+	var el = gebi('testremove');
+	var mem = addEvent(el, 'click', function(e){
+		rcn(this, 'unconfirmed');
+		rcn(this, 'confirmed');
+		acn(this, 'failed');
+		this.innerHTML = 'removeEvent() failed';
+		cancelBubble(e);
+	});
+	removeEvent(mem);
+});
+
+reg.click('#testremove', function(){
+	rcn(this, 'failed');
+	rcn(this, 'unconfirmed');
+	acn(this, 'confirmed');
+	this.innerHTML = 'removeEvent() works';
+});
+
+reg.click('#testdefault a@href', function(){
+	var div = this.parentNode;
+	rcn(div, 'failed');
+	rcn(div, 'unconfirmed');
+	acn(div, 'confirmed');
+	this.innerHTML = 'cancelDefault() works';
+	return false;
+});
+
+reg.key('html', function(ev){
+	if (ev.is.arrowLeft) { scn(gebi('arrowLeft'),'unconfirmed','confirmed'); }
+	if (ev.is.arrowUp) { scn(gebi('arrowUp'),'unconfirmed','confirmed'); }
+	if (ev.is.arrowRight) { scn(gebi('arrowRight'),'unconfirmed','confirmed'); }
+	if (ev.is.arrowDown) { scn(gebi('arrowDown'),'unconfirmed','confirmed'); }
+	if (ev.is.esc) { scn(gebi('esc'),'unconfirmed','confirmed'); }
+	if (ev.is.tab) { scn(gebi('tab'),'unconfirmed','confirmed'); }
+	if (ev.is.space) { scn(gebi('space'),'unconfirmed','confirmed'); }
+	if (ev.is.enter) { scn(gebi('enter'),'unconfirmed','confirmed'); }
+	if (ev.is.home) { scn(gebi('home'),'unconfirmed','confirmed'); }
+	if (ev.is.end) { scn(gebi('end'),'unconfirmed','confirmed'); }
+	if (ev.is.pgDown) { scn(gebi('pgDown'),'unconfirmed','confirmed'); }
+	if (ev.is.pgUp) { scn(gebi('pgUp'),'unconfirmed','confirmed'); }
+	if (ev.is.backSp) { scn(gebi('backSp'),'unconfirmed','confirmed'); }
+	if (ev.is.del) { scn(gebi('del'),'unconfirmed','confirmed'); }
+	if (ev.is.space && ev.shiftKey) { scn(gebi('shifts'),'unconfirmed','confirmed'); }
+	if (ev.is.arrowUp && ev.ctrlKey) { scn(gebi('ctrls'),'unconfirmed','confirmed'); }
+	if (ev.is.arrowDown && ev.altKey) { scn(gebi('alts'),'unconfirmed','confirmed'); }
+});
+
+</script>
+</head>
+<body>
+<div id="pagewrap">
+<p><a href="index.html">&laquo; back to index</a></p>
+<h1>Testing Event Functions</h1>
+
+<div id="testadd" class="test unconfirmed">
+click to test addEvent()
+</div>
+
+<div id="testremove" class="test unconfirmed">
+click to test removeEvent()
+</div>
+
+<div id="testcancel" class="test unconfirmed">
+click to test cancelBubble()
+</div>
+
+<div id="testdefault" class="test unconfirmed">
+<a href="http://www.google.com/">click to test cancelDefault()</a>
+</div>
+
+<div id="testtarget" class="test unconfirmed">
+click to test getTarget()
+</div>
+
+hit these keys:
+<div>
+<div id="arrowLeft" class="keytest unconfirmed">left</div>
+<div id="arrowUp" class="keytest unconfirmed">up</div>
+<div id="arrowRight" class="keytest unconfirmed">right</div>
+<div id="arrowDown" class="keytest unconfirmed">down</div>
+<div id="esc" class="keytest unconfirmed">esc</div>
+<div id="tab" class="keytest unconfirmed">tab</div>
+<div id="space" class="keytest unconfirmed">space</div>
+<div id="enter" class="keytest unconfirmed">enter</div>
+<div id="home" class="keytest unconfirmed">home</div>
+<div id="end" class="keytest unconfirmed">end</div>
+<div id="pgDown" class="keytest unconfirmed">pgDown</div>
+<div id="pgUp" class="keytest unconfirmed">pgUp</div>
+<div id="backSp" class="keytest unconfirmed">backSp</div>
+<div id="del" class="keytest unconfirmed">del</div>
+
+<div id="shifts" class="keytest unconfirmed">shift+space</div>
+<div id="ctrls" class="keytest unconfirmed">ctrl+up</div>
+<div id="alts" class="keytest unconfirmed">alt+down</div>
+</div>
+
+</div>
+</body>
+</html>
+
+
+
