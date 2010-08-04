@@ -42,9 +42,10 @@ full advantage of this functionality in its event delegation API, providing a
 natural way to initialize useful variables:
 
     REGLIB.click('div.foo > span.bar + a@href', function(event, fooDiv, barSpan, link){
+        // event is always the first argument passed
         // pattern matches are passed to the handler function as arguments
-        // actual matched element is last argument passed
-        // alternatively, actual matched element referenced as 'this'
+        // actual matched element is always last argument passed
+        // alternatively, actual matched element can be referenced as 'this'
     });
 
 ### MouseEnter/MouseLeave and FocusEnter/FocusLeave
