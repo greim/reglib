@@ -39,7 +39,7 @@ if there's no match it returns null, but if there's a match it returns an array:
 
 You're free to use selectors in the way described above, however reglib takes
 full advantage of this functionality in its event delegation API, providing a
-natural way to initialize usefull variables:
+natural way to initialize useful variables:
 
     REGLIB.click('div.foo > span.bar + a@href', function(event, fooDiv, barSpan, link){
         // pattern matches are passed to the handler function as arguments
