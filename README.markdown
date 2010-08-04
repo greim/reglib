@@ -1,8 +1,8 @@
 # Reglib
 
 Reglib is a lightweight, standalone event delegation library, specializing in
-*root-level event delegation*. Reglib can be used easily alongside other
-libraries, such as jQuery.
+*root-level event delegation*. Reglib is fully independent of other libraries
+and can be used alongside them without problems.
 
 ## What is Root-Level Event Delegation?
 
