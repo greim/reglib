@@ -12,7 +12,7 @@ multiple versions of the same handler to a bunch of similar elements.
 
 *Root-level* event delegation is when this meta-handler is attached the the
 ultimate ancestor node—the root—effectively giving it visibility to all events
-on the page. This has a number of benefits:
+on the page, over the lifetime of the page. This has a number of benefits:
 
  * Avoids the CPU spike associated with querying and wiring up lots of events at load time.
  * Avoids the need to re-query and re-wire when large swaths of DOM are replaced by ajax output or innerHTML.
@@ -26,8 +26,8 @@ on the page. This has a number of benefits:
 Reglib's DOM selectors behave less like SQL queries and more like regular
 expressions. In other words, instead of using a selector to search and return a
 list of elements, a selector pattern-matches against an element you pass to it.
-It functions similar to JavaScript's <code>String.match()</code> method, where
-if there's no match it returns null, but if there's a match it returns an array:
+It functions similar to JavaScript's <code>String.match()</code> method. If
+there's no match it returns null, but if there's a match it returns an array:
 
     var selector = new REGLIB.Selector('div.foo > span.bar + a@href');
     var match = selector.match(someElement);
