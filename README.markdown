@@ -5,13 +5,13 @@ event delegation.
 
 ## What is Root-Level Event Delegation?
 
-Event delegation is the technique of *delegating* the job of event handling to
-a single meta-handler attached to an ancestor DOM node, rather than attaching
+Event delegation is the technique of delegating the job of event handling to a
+single meta-handler attached to an ancestor DOM node, rather than attaching
 multiple copies of a handler directly to nodes themselves.
 
 *Root-level* event delegation is when this meta-handler is attached the the
 ultimate ancestor node—the root—effectively giving it visibility to all events
-occurring across the entire page. This technique has a number of benefits:
+on the page. This has a number of benefits:
 
  * Avoids the CPU spike associated with querying and wiring up lots of events at load time.
  * Avoids the need to re-query and re-wire when large swaths of DOM are replaced by ajax output or innerHTML.
@@ -38,7 +38,7 @@ if there's no match it returns null, but if there's a match it returns an array:
 
 You're free to use selectors in the way described above, however reglib takes
 full advantage of this functionality in its event delegation API, providing a
-natural way to initialize local variables that might be useful:
+natural way to initialize usefull variables:
 
     REGLIB.click('div.foo > span.bar + a@href', function(event, fooDiv, barSpan, link){
         // pattern matches are passed to the handler function as arguments
