@@ -64,9 +64,9 @@ on the page, over the lifetime of the page. This has a number of benefits:
         return false;
     });
 
-This statement acts as a declaration that remains in effect for the lifetime of
-the page, even if popup links are continually being added and removed, just as
-this:
+The above statement acts as a declaration that remains in effect for the
+lifetime of the page, even if popup links are continually being added and
+removed, just as this:
 
     a.popup {
         color:green;
