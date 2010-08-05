@@ -10,7 +10,7 @@ Event delegation is the technique of delegating the job of event handling to a
 single meta-handler attached to an ancestor DOM node, rather than attaching
 multiple versions of the same handler to a bunch of similar elements.
 
-### Traditional Event Handling:
+### Traditional Event Handling
 
     <div>
      |
@@ -20,9 +20,9 @@ multiple versions of the same handler to a bunch of similar elements.
      |
      +--<a> <-- handler attached here
 
-### Event Delegation:
+### Event Delegation
 
-    <div> <-- handler attached here, events bubble up to it
+    <div> <-- handler attached here
      |
      +--<a>
      |
@@ -31,6 +31,18 @@ multiple versions of the same handler to a bunch of similar elements.
      +--<a>
 
 ### Root-Level Event Delegation
+
+    <html> <-- handler attached here
+     |
+     +--<body>
+         |
+         +--<div>
+             |
+             +--<a>
+             |
+             +--<a>
+             |
+             +--<a>
 
 *Root-level* event delegation is when this meta-handler is attached the the
 ultimate ancestor node—the root—effectively giving it visibility to all events
