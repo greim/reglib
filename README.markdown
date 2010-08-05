@@ -100,8 +100,9 @@ mouseout, focus and blur.
 Reglib is currently in its 2.0 incarnation. Since JQuery and other libraries
 already provide a great set of general-purpose tools, reglib 2.0 has been
 distilled down from being a general-purpose library to only focusing on event
-delegation. Reglib is intended to run alongside and play well with other
+delegation. Reglib 2.0 is intended to run alongside and play well with other
 libraries.
 
-Version 1.0 is still available here: http://code.google.com/p/reglib/
+2.0 is *not* backwards compatible with 1.0 and should be treated as a separate
+library. 1.0 is still available here: http://code.google.com/p/reglib/
 
