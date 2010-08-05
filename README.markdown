@@ -10,6 +10,26 @@ Event delegation is the technique of delegating the job of event handling to a
 single meta-handler attached to an ancestor DOM node, rather than attaching
 multiple versions of the same handler to a bunch of similar elements.
 
+### Traditional Event Handling:
+
+    <div>
+     |
+     +--<a> <-- handler attached here
+     |
+     +--<a> <-- handler attached here
+     |
+     +--<a> <-- handler attached here
+
+### Event Delegation:
+
+    <div> <-- handler attached here, events bubble up to it
+     |
+     +--<a>
+     |
+     +--<a>
+     |
+     +--<a>
+
 *Root-level* event delegation is when this meta-handler is attached the the
 ultimate ancestor node—the root—effectively giving it visibility to all events
 on the page, over the lifetime of the page. This has a number of benefits:
@@ -52,7 +72,7 @@ natural way to initialize useful variables:
 
 Reglib fires mouseover, mouseout, focus and blur handlers only at times that are
 interesting and useful to your program. For example, if you handle mouseover
-events on <code>"div#foo"</code>, reglib assumes you don't also want to handle
+events on <code>"div#foo"</code>, reglib assumes you don't want to also handle
 mouseover events for every child of <code>"div#foo"</code>. Likewise with
 mouseout, focus and blur.
 

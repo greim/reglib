@@ -589,12 +589,8 @@ if(typeof document.onactivate == 'object'){
 // faux focus event detection to support focus enter/leave behavior
 (function(){
 	var activeEl = null, prevActiveEl = null;
-	addEvent(docEl,blurEventType, function(e){
-		activeEl = null;
-	},true);
-	addEvent(docEl,focusEventType, function(e){
-		activeEl = e.target;
-	},true);
+	addEvent(docEl,blurEventType, function(e){ activeEl = null; },true);
+	addEvent(docEl,focusEventType, function(e){ activeEl = e.target; },true);
 	(function(){
 		if (prevActiveEl !== activeEl) {
 			if (prevActiveEl) {
