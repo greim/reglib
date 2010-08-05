@@ -51,7 +51,7 @@ ultimate ancestor node—the root—effectively giving it visibility to all even
 on the page, over the lifetime of the page. This has a number of benefits:
 
  * Avoids the CPU spike associated with querying and wiring up lots of events at load time.
- * Avoids the need to re-query and re-wire when large swaths of DOM are replaced by ajax output or innerHTML.
+ * Avoids the need to re-query and re-wire when large swaths of DOM are added or overwritten.
  * Avoids "dead time" before the page load event fires, when events haven't been wired up yet.
  * Avoids the memory footprint of having separate versions of the same handler attached to lots of elements.
 
