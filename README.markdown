@@ -95,15 +95,13 @@ events on <code>"div#foo"</code>, reglib assumes you don't want to also handle
 mouseover events for every descendant of <code>"div#foo"</code>. Likewise with
 mouseout, focus and blur.
 
-## Version 2.0
+## Version 2.0 versus 1.0
 
 Reglib is currently in its 2.0 incarnation. Since JQuery and other libraries
 already provide a great set of general-purpose tools, reglib 2.0 has been
 distilled down from being a general-purpose library to only focusing on event
 delegation. Reglib is intended to run alongside and play well with other
 libraries.
-
-## Version 1.0
 
 Version 1.0 is still available here: http://code.google.com/p/reglib/
 
