@@ -72,7 +72,8 @@ removed, just as this:
         color:green;
     }
 
-...remains in effect for the lifetime of the page.
+...remains in effect for the lifetime of the page even if popup links are
+continually being added and removed.
 
 ### RegExp-Like Selectors
 
