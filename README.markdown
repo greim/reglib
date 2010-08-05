@@ -16,15 +16,15 @@ the document.
 
     <div>
      |
-     +--<a> <-- handler bound here
+     +--<a> <-- handler bound here, listens for clicks
      |
-     +--<a> <-- handler bound here
+     +--<a> <-- handler bound here, listens for clicks
      |
-     +--<a> <-- handler bound here
+     +--<a> <-- handler bound here, listens for clicks
 
 ### Event Delegation
 
-    <div> <-- meta-handler bound here
+    <div> <-- meta-handler bound here, listens for clicks originating from <a>
      |
      +--<a>
      |
@@ -34,8 +34,8 @@ the document.
 
 ### Root-Level Event Delegation
 
-    <html> <-- meta-handler bound here
-     |
+    <html> <-- meta-handler bound here, listens for clicks originating from
+     |         elements matching an entry in look-up table of selectors
      +--<body>
          |
          +--<div>
