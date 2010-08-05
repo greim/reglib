@@ -8,7 +8,8 @@ and can be used alongside them without problems.
 
 Event delegation is the technique of delegating the job of event handling to a
 single meta-handler attached to an ancestor DOM node, rather than attaching
-multiple versions of the same handler to a bunch of similar elements.
+multiple versions of the same handler to a bunch of similar elements. This is
+possible because most events "bubble" up the DOM to the root.
 
 ### Traditional Event Handling
 
