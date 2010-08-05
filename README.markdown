@@ -24,7 +24,7 @@ root of the document.
 
 ### Event Delegation
 
-    <div> <-- handler attached here
+    <div> <-- meta-handler attached here
      |
      +--<a>
      |
@@ -34,7 +34,7 @@ root of the document.
 
 ### Root-Level Event Delegation
 
-    <html> <-- handler attached here
+    <html> <-- meta-handler attached here
      |
      +--<body>
          |
@@ -56,6 +56,23 @@ on the page, over the lifetime of the page. This has a number of benefits:
  * Avoids the memory footprint of having separate versions of the same handler attached to lots of elements.
 
 ## Reglib Feature Hilights
+
+### Simple, Declarative API
+
+    REGLIB.click('a.popup', function(e){
+        window.open(this.href);
+        return false;
+    });
+
+This statement acts as a declaration that remains in effect for the lifetime of
+the page, even if popup links are continually being added and removed, just as
+this:
+
+    a.popup {
+        color:green;
+    }
+
+...remains in effect for the lifetime of the page.
 
 ### RegExp-Like Selectors
 
@@ -84,7 +101,7 @@ natural way to initialize useful variables:
         // alternatively, actual matched element can be referenced as 'this'
     });
 
-### MouseEnter/MouseLeave and FocusEnter/FocusLeave
+### Mouse Enter/Leave and Focus Enter/Leave Behavior
 
 Reglib fires mouseover, mouseout, focus and blur handlers only at times that are
 interesting and useful to your program. For example, if you handle mouseover
