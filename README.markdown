@@ -92,7 +92,7 @@ This is a natural way to initialize useful variables:
 Reglib fires mouseover, mouseout, focus and blur handlers only at times that are
 interesting and useful to your program. For example, if you handle mouseover
 events on <code>"div#foo"</code>, reglib assumes you don't want to also handle
-mouseover events for every child of <code>"div#foo"</code>. Likewise with
+mouseover events for every descendant of <code>"div#foo"</code>. Likewise with
 mouseout, focus and blur.
 
 ## Version 2.0
