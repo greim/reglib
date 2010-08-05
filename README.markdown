@@ -7,24 +7,24 @@ and can be used alongside them without problems.
 ## What is Root-Level Event Delegation?
 
 Event delegation is the technique of delegating the job of event handling to a
-single meta-handler attached to an ancestor DOM node, rather than attaching
-multiple instances of the same handler directly to elements. This is possible
-because most events propagate, or "bubble," up the ancestor hierarchy toward the
-root of the document.
+single meta-handler bound to an ancestor DOM node, rather than binding multiple
+instances of the same handler directly to elements. This is possible because
+most events propagate, or "bubble," up the ancestor hierarchy toward the root of
+the document.
 
 ### Traditional Event Handling
 
     <div>
      |
-     +--<a> <-- handler attached here
+     +--<a> <-- handler bound here
      |
-     +--<a> <-- handler attached here
+     +--<a> <-- handler bound here
      |
-     +--<a> <-- handler attached here
+     +--<a> <-- handler bound here
 
 ### Event Delegation
 
-    <div> <-- meta-handler attached here
+    <div> <-- meta-handler bound here
      |
      +--<a>
      |
@@ -34,7 +34,7 @@ root of the document.
 
 ### Root-Level Event Delegation
 
-    <html> <-- meta-handler attached here
+    <html> <-- meta-handler bound here
      |
      +--<body>
          |
@@ -46,14 +46,14 @@ root of the document.
              |
              +--<a>
 
-*Root-level* event delegation is when this meta-handler is attached to the
-ultimate ancestor node—the root—effectively giving it visibility to all events
-on the page, over the lifetime of the page. This has a number of benefits:
+*Root-level* event delegation is when this meta-handler is bound to the ultimate
+ancestor node—the root—effectively giving it visibility to all events on the
+page, over the lifetime of the page. This has a number of benefits:
 
  * Avoids the CPU spike associated with querying and wiring up lots of events at load time.
  * Avoids the need to re-query and re-wire when large swaths of DOM are added or overwritten.
  * Avoids "dead time" before the page load event fires, when events haven't been wired up yet.
- * Avoids the memory footprint of having separate versions of the same handler attached to lots of elements.
+ * Avoids the memory footprint of having lots of duplicate bindings of handlers to elements.
 
 ## Reglib Feature Hilights
 
