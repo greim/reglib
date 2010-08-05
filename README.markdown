@@ -16,35 +16,35 @@ the document.
 
     <div>
      |
-     +--<a> <-- handler bound here, listens for clicks
+     +--<a class="foo"> <-- handler bound here, listens for clicks
      |
-     +--<a> <-- handler bound here, listens for clicks
+     +--<a class="foo"> <-- handler bound here, listens for clicks
      |
-     +--<a> <-- handler bound here, listens for clicks
+     +--<a class="foo"> <-- handler bound here, listens for clicks
 
 ### Event Delegation
 
-    <div> <-- meta-handler bound here, listens for clicks originating from <a>
+    <div> <-- meta-handler bound here, listens for clicks originating from a.foo
      |
-     +--<a>
+     +--<a class="foo">
      |
-     +--<a>
+     +--<a class="foo">
      |
-     +--<a>
+     +--<a class="foo">
 
 ### Root-Level Event Delegation
 
     <html> <-- meta-handler bound here, listens for clicks originating from
-     |         elements matching an entry in look-up table of selectors
+     |         elements matching an entry in table of selectors
      +--<body>
          |
          +--<div>
              |
-             +--<a>
+             +--<a class="foo">
              |
-             +--<a>
+             +--<a class="foo">
              |
-             +--<a>
+             +--<a class="foo">
 
 *Root-level* event delegation is when this meta-handler is bound to the ultimate
 ancestor node—the root—effectively giving it visibility to all events on the
