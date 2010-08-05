@@ -75,25 +75,10 @@ removed, just as this:
 ...remains in effect for the lifetime of the page even if popup links are
 continually being added and removed.
 
-### RegExp-Like Selectors
-
-Reglib's DOM selectors behave less like SQL queries and more like regular
-expressions. In other words, instead of using a selector to search and return a
-list of elements, a selector pattern-matches against an element you pass to it.
-It functions similar to JavaScript's <code>String.match()</code> method. If
-there's no match it returns null, but if there's a match it returns an array:
-
-    var selector = new REGLIB.Selector('div.foo > span.bar + a@href');
-    var match = selector.match(someElement);
-    if (match) {
-        // match === [<div class="foo"/>, <span class="bar"/>, <a href="..."/>]
-    }
-
 ### Matching Elements are Passed as Args to Your Handler
 
-You're free to use selectors in the way described above, however reglib takes
-full advantage of this functionality in its event delegation API, providing a
-natural way to initialize useful variables:
+Items in your selector correspond to arguments passed to your handler function.
+This is a natural way to initialize useful variables:
 
     REGLIB.click('div.foo > span.bar + a@href', function(event, fooDiv, barSpan, link){
         // event is always the first argument passed
