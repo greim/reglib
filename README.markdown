@@ -30,6 +30,8 @@ multiple versions of the same handler to a bunch of similar elements.
      |
      +--<a>
 
+### Root-Level Event Delegation
+
 *Root-level* event delegation is when this meta-handler is attached the the
 ultimate ancestor node—the root—effectively giving it visibility to all events
 on the page, over the lifetime of the page. This has a number of benefits:
