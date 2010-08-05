@@ -46,7 +46,7 @@ root of the document.
              |
              +--<a>
 
-*Root-level* event delegation is when this meta-handler is attached the the
+*Root-level* event delegation is when this meta-handler is attached to the
 ultimate ancestor node—the root—effectively giving it visibility to all events
 on the page, over the lifetime of the page. This has a number of benefits:
 
