@@ -389,7 +389,7 @@ var addEvent = $.addEvent = function(elmt, evt, hdlr, cptr, cleanable) {
 		elmt.addEventListener(evt, whdlr, cptr);
 		return rememberEvent(elmt, evt, whdlr, cptr, cleanable);
 	} else if (elmt.attachEvent) {
-		var whdlr = function() { hdlr.call(elmt, normalizeEvent(e)); };
+		var whdlr = function() { hdlr.call(elmt, normalizeEvent()); };
 		elmt.attachEvent("on"+evt, whdlr);
 		return rememberEvent(elmt, evt, whdlr, cptr, cleanable);
 	}
