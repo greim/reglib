@@ -329,6 +329,9 @@ function normalizeEvent(e) {
 	if (e.stopPropagation === undefined) {
 		e.stopPropagation = function() { e.cancelBubble=true; };
 	}
+	if (e.metaKey === undefined && e.ctrlKey !== undefined) {
+		e.metaKey = e.ctrlKey;
+	}
 	return e;
 }
 
@@ -406,8 +409,8 @@ var clickHandlers = {};
 var mDownHandlers = {};
 var mUpHandlers = {};
 var dblClickHandlers = {};
-var mOverHandlers = {};
-var mOutHandlers = {};
+var mEnterHandlers = {};
+var mLeaveHandlers = {};
 var focusHandlers = {};
 var blurHandlers = {};
 var keyDownHandlers = {};
@@ -429,29 +432,49 @@ function register(selStr, handlerFunc, handlers, hoverFlag) {
 	};
 	handlers[selStr].push(selHandler);
 }
-
+$.delegate = function(eNames){
+	var args = [];
+	for (var i=1; i<arguments.length; i++){
+		args.push(arguments[i]);
+	}
+	eNames = eNames.split(/\s+/g);
+	for (var i=0; i<eNames.length; i++){
+		try { $[eNames[i]].apply($,args); }
+		catch(err){}
+	}
+};
 $.click = function(selStr, func){
-	register(selStr, func,  clickHandlers,    false);
+	register(selStr, func, clickHandlers, false);
 };
 $.doubleClick = function(selStr, func){
 	register(selStr, func, dblClickHandlers, false);
 };
-$.mouse = function(selStr, downFunc, upFunc){
-	register(selStr, downFunc,   mDownHandlers,    false);
-	register(selStr, upFunc,     mUpHandlers,      false);
+$.mousedown = function(selStr, func){
+	register(selStr, func, mDownHandlers, false);
 };
-$.hover = function(selStr, overFunc, outFunc){
-	register(selStr, overFunc, mOverHandlers, true);
-	register(selStr, outFunc,  mOutHandlers,  true);
+$.mouseup = function(selStr, func){
+	register(selStr, func, mUpHandlers, false);
 };
-$.focus = function(selStr, focusFunc, blurFunc){
-	register(selStr, focusFunc, focusHandlers, false);
-	register(selStr, blurFunc,  blurHandlers,  false);
+$.mouseenter = function(selStr, func){
+	register(selStr, func, mEnterHandlers, true);
 };
-$.key = function(selStr, downFunc, pressFunc, upFunc){
-	register(selStr, downFunc,  keyDownHandlers,  false);
-	register(selStr, pressFunc, keyPressHandlers, false);
-	register(selStr, upFunc,    keyUpHandlers,    false);
+$.mouseleave = function(selStr, func){
+	register(selStr, func, mLeaveHandlers, true);
+};
+$.focus = function(selStr, func){
+	register(selStr, func, focusHandlers, false);
+};
+$.blur = function(selStr, func){
+	register(selStr, func, blurHandlers, false);
+};
+$.keydown = function(selStr, func){
+	register(selStr, func, keyDownHandlers, false);
+};
+$.keypress = function(selStr, func){
+	register(selStr, func, keyPressHandlers, false);
+};
+$.keyup = function(selStr, func){
+	register(selStr, func, keyUpHandlers, false);
 };
 $.submit = function(selStr, func) {
 	register(selStr, func, submitHandlers, false);
@@ -467,6 +490,10 @@ $.select = function(selStr, func) {
 };
 
 //convenience methods
+$.hover = function(selStr, enterFunc, leaveFunc){
+	register(selStr, enterFunc, mEnterHandlers, true);
+	register(selStr, leaveFunc, mLeaveHandlers, true);
+};
 $.esc = function(selStr, func){
 	register(selStr, function(e){
 		if (e.keyCode === 27) {
@@ -485,6 +512,31 @@ $.arrow = function(selStr, up, right, down, left){
 		} else if (e.keyCode === 37) {
 			left.apply(this, arguments);
 		}
+	}, keyDownHandlers, false);
+};
+$.up = function(selStr, func){
+	register(selStr, function(e){
+		if (e.keyCode === 38) { func.apply(this, arguments); }
+	}, keyDownHandlers, false);
+};
+$.right = function(selStr, func){
+	register(selStr, function(e){
+		if (e.keyCode === 39) { func.apply(this, arguments); }
+	}, keyDownHandlers, false);
+};
+$.down = function(selStr, func){
+	register(selStr, function(e){
+		if (e.keyCode === 40) { func.apply(this, arguments); }
+	}, keyDownHandlers, false);
+};
+$.left = function(selStr, func){
+	register(selStr, function(e){
+		if (e.keyCode === 37) { func.apply(this, arguments); }
+	}, keyDownHandlers, false);
+};
+$.enter = function(selStr, func){
+	register(selStr, function(e){
+		if (e.keyCode === 13) { func.apply(this, arguments); }
 	}, keyPressHandlers, false);
 };
 
@@ -621,8 +673,8 @@ addEvent(docEl,'dblclick',     function(e){delegate(dblClickHandlers,e);});
 addEvent(docEl,'keydown',      function(e){delegate(keyDownHandlers, e);});
 addEvent(docEl,'keypress',     function(e){delegate(keyPressHandlers,e);});
 addEvent(docEl,'keyup',        function(e){delegate(keyUpHandlers,   e);});
-addEvent(docEl,'mouseover',    function(e){delegate(mOverHandlers,   e);});
-addEvent(docEl,'mouseout',     function(e){delegate(mOutHandlers,    e);});
+addEvent(docEl,'mouseover',    function(e){delegate(mEnterHandlers,   e);});
+addEvent(docEl,'mouseout',     function(e){delegate(mLeaveHandlers,    e);});
 addEvent(docEl,'submit',       function(e){delegate(submitHandlers,  e);});
 addEvent(docEl,'reset',        function(e){delegate(resetHandlers,   e);});
 addEvent(docEl,'change',       function(e){delegate(changeHandlers,  e);});
