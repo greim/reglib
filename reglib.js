@@ -446,7 +446,7 @@ $.delegate = function(eNames){
 $.click = function(selStr, func){
 	register(selStr, func, clickHandlers, false);
 };
-$.doubleClick = function(selStr, func){
+$.doubleclick = function(selStr, func){
 	register(selStr, func, dblClickHandlers, false);
 };
 $.mousedown = function(selStr, func){
