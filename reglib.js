@@ -560,25 +560,28 @@ if (document.all && !window.opera) {
 		delegate(selectHandlers,e);
 		e.stopPropagation();
 	}
-	focus('form',function(){
+	$.focus('form',function(){
 		removeEvent(this._submit_prep);
 		this._submit_prep=addEvent(this,'submit',ieSubmitDelegate,false,true);
 		removeEvent(this._reset_prep);
 		this._reset_prep=addEvent(this,'reset',ieResetDelegate,false,true);
-	},function(){
+	});
+	$.blur('form',function(){
 		removeEvent(this._submit_prep);
 		removeEvent(this._reset_prep);
 	});
-	focus('select,input,textarea',function(){
+	$.focus('select,input,textarea',function(){
 		removeEvent(this._change_prep);
 		this._change_prep=addEvent(this,'change',ieChangeDelegate,false,true);
-	},function(){
+	});
+	$.blur('select,input,textarea',function(){
 		removeEvent(this._change_prep);
 	});
-	focus('input,textarea',function(){
+	$.focus('input,textarea',function(){
 		removeEvent(this._select_prep);
 		this._select_prep=addEvent(this,'select',ieSelectDelegate,false,true);
-	},function(){
+	});
+	$.blur('input,textarea',function(){
 		removeEvent(this._select_prep);
 	});
 }
